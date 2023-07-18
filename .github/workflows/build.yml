@@ -28,6 +28,7 @@ jobs:
   build-and-push-builder:
     name: Build and Push devlake builder
     runs-on: ubuntu-latest
+    environment: devlake
     steps:
       - uses: actions/checkout@v3
       - name: Set up QEMU
@@ -52,6 +53,7 @@ jobs:
   build-and-push-base:
     name: Build and Push devlake base
     runs-on: ubuntu-latest
+    environment: devlake
     steps:
       - uses: actions/checkout@v3
       - name: Set up QEMU
@@ -77,6 +79,7 @@ jobs:
     needs: build-and-push-builder
     name: Build and cache devlake
     runs-on: ubuntu-latest
+    environment: devlake
     strategy:
       matrix:
         platform: ["arm64", "amd64"]
@@ -115,6 +118,7 @@ jobs:
     needs: [build-devlake, build-and-push-base]
     name: Build and Push devlake image
     runs-on: ubuntu-latest
+    environment: devlake
     steps:
       - uses: actions/checkout@v3
       - name: Get short sha
@@ -182,6 +186,7 @@ jobs:
   build-and-push-other-image:
     name: Build and Push ${{ matrix.build.name }} image
     runs-on: ubuntu-latest
+    environment: devlake
     strategy:
       matrix:
         build:
