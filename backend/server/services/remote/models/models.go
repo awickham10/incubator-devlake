@@ -138,4 +138,9 @@ type PipelineData struct {
 	Scopes []DynamicDomainScope `json:"scopes"`
 }
 
+type ToolModel struct {
+	common.NoPKModel
+	ConnectionId uint64 `json:"connectionId" gorm:"column:connection_id;not null"`
+}
+
 var _ plugin.ToolLayerScope = (*DynamicScopeModel)(nil)
